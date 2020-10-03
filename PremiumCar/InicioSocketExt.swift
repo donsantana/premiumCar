@@ -12,7 +12,7 @@ import AVFoundation
 
 extension InicioController{
   func socketEventos(){
-    
+    self.offSocketEventos()
     //Evento sockect para escuchar
     //TRAMA IN: #LoginPassword,loginok,idusuario,idrol,idcliente,nombreapellidos,cantsolpdte,idsolicitud,idtaxi,cod,fechahora,lattaxi,lngtaxi,latorig,lngorig,latdest,lngdest,telefonoconductor
     if self.appUpdateAvailable(){
@@ -66,7 +66,7 @@ extension InicioController{
         self.newOfertaText.text = String(format: "%.2f", self.ofertaDataCell.valorOferta)
         self.down25.isEnabled = false
       }else{
-        print("error de solicitud")
+        print("error de solicitud \(data)")
       }
     }
     
@@ -125,13 +125,10 @@ extension InicioController{
     }
     
     globalVariables.socket.on("ofertadelconductor"){data, ack in
-      print(data)
+      print("oferta \(data)")
       let temporal = data[0] as! [String: Any]
-      
       let array = globalVariables.ofertasList.map{$0.idTaxi}
-
-      if !array.contains(temporal["idtaxi"] as! Int){
-        print(temporal["codigotaxi"] as! String)
+      if !array.contains(temporal["idsolicitud"] as! Int){
         let newOferta = Oferta(id: temporal["idsolicitud"] as! Int, idTaxi: temporal["idtaxi"] as! Int, idConductor: temporal["idconductor"] as! Int, codigo: temporal["codigotaxi"] as! String, nombreConductor: temporal["nombreapellidosconductor"] as! String, movilConductor: temporal["telefonoconductor"] as! String, lat: temporal["lattaxi"] as! Double, lng: temporal["lngtaxi"] as! Double, valorOferta: temporal["valoroferta"] as! Double, tiempoLLegada: temporal["tiempollegada"] as! Int, calificacion: temporal["calificacion"] as! Double, totalCalif: temporal["cantidaddecalificacion"] as! Int, urlFoto: temporal["foto"] as! String, matricula: temporal["matriculataxi"] as! String, marca: temporal["marcataxi"] as! String, color: temporal["colortaxi"] as! String)
 
         globalVariables.ofertasList.append(newOferta)
@@ -266,6 +263,20 @@ extension InicioController{
             self.navigationController?.show(vc, sender: nil)
           }
         }
+      }
+    }
+    
+    globalVariables.socket.on("llegue"){data, ack in
+      let result = data[0] as! [String: Any]
+      print(result["idsolicitud"])
+      let solicitudIndex = globalVariables.solpendientes.firstIndex{$0.id == result["idsolicitud"] as! Int}!
+      let solicitud = globalVariables.solpendientes[solicitudIndex]
+      if solicitudIndex >= 0{
+        let alertaDos = UIAlertController (title: "Su Taxi ha llegado", message: "Su taxi \(solicitud.taxi.marca), color \(solicitud.taxi.color), matrícula \(solicitud.taxi.matricula) ha llegado al punto de recogida.", preferredStyle: UIAlertController.Style.alert)
+        alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
+          
+        }))
+        self.present(alertaDos, animated: true, completion: nil)
       }
     }
   }

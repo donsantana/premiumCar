@@ -171,7 +171,7 @@ class CSMSVoz: UIViewController, URLSessionDelegate, URLSessionTaskDelegate, URL
     print("audio recibido \(url)")
     //AUDIOSESSION
     do {
-      self.inicializarGrabacion()
+      //self.inicializarGrabacion()
       globalVariables.SMSProceso = true
       let fileURL = NSURL(string:url)
       let soundData = NSData(contentsOf:fileURL! as URL)

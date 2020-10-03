@@ -24,10 +24,11 @@ extension LoginController{
     )
     if CConexionInternet.isConnectedToNetwork() == true{
       globalVariables.socket = self.socketIOManager.socket(forNamespace: "/")
-      print("Trying connect socket")
+      print("Trying connect socket \(globalVariables.userDefaults.value(forKey: "accessToken") as! String)")
+      self.waitSocketConnection()
       globalVariables.socket.connect()
 
-      self.waitSocketConnection()
+      
     }else{
       ErrorConexion()
     }
@@ -152,7 +153,7 @@ extension LoginController{
   }
   
   func checkifBioAuth(){
-    let myLocalizedReasonString = "Biometric Authntication testing !! "
+    let myLocalizedReasonString = "Biometric Authntication testing !!"
     
     var authError: NSError?
     if myContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &authError) {

@@ -85,7 +85,7 @@ class SolPendController: BaseController, MKMapViewDelegate, UITextViewDelegate,U
     self.SMSVozBtn.addGestureRecognizer(longGesture)
     
     //ADS BANNER VIEW
-    self.adsBannerView.adUnitID = "ca-app-pub-1778988557303127/5963556124"
+    self.adsBannerView.adUnitID = "ca-app-pub-1778988557303127/7963427999"
     self.adsBannerView.rootViewController = self
     self.adsBannerView.load(GADRequest())
     self.adsBannerView.delegate = self
@@ -256,10 +256,16 @@ class SolPendController: BaseController, MKMapViewDelegate, UITextViewDelegate,U
     let datos = self.solicitudPendiente.crearTramaCancelar(motivo: motivo)
     print(self.solicitudPendiente.id)
     globalVariables.solpendientes.removeAll{$0.id == self.solicitudPendiente.id}
-    //EnviarSocket(Datos)
     let vc = R.storyboard.main.inicioView()!
     vc.socketEmit("cancelarservicio", datos: datos)
     self.navigationController?.show(vc, sender: nil)
+  }
+  
+  func offSocketEventos(){
+    globalVariables.socket.off("cargardatosdevehiculo")
+    globalVariables.socket.off("voz")
+    globalVariables.socket.off("geocliente")
+    globalVariables.socket.off("serviciocompletado")
   }
   
   //MASK:- ACCIONES DE BOTONES

@@ -242,16 +242,16 @@ class Solicitud {
     ]
     
     if self.otroTelefono != ""{
+      tramaBase["idcliente"] = globalVariables.cliente.id!
       tramaBase["nombreapellidos"] = self.otroNombre
-      tramaBase["movil"] = self.otroTelefono
+      tramaBase["movilcliente"] = self.otroTelefono
     }
     
     if self.tipoServicio == 1{
       tramaBase["importe"] = self.valorOferta
       tramaBase["detalleoferta"] = self.detalleOferta
     }
-
-    print(tramaBase)
+    print("trama \(tramaBase)")
     return tramaBase
   }
   

@@ -18,7 +18,6 @@ class OfertaDataViewCell: UITableViewCell {
   @IBOutlet weak var ofertaValuePicker: UIPickerView!
   
   func initContent(precioInicial: Double){
-    print(precioInicial)
     self.valorOferta = precioInicial
     var rangoOferta = precioInicial
     self.ofertaValuePicker.delegate = self

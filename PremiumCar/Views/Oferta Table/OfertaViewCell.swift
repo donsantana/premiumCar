@@ -30,7 +30,7 @@ class OfertaViewCell: UITableViewCell {
     task.resume()
    self.condNombreApellidos.text = oferta.nombreConductor
     self.distanciaTiempoText.text = "Tiempo de llegada: \(oferta.tiempoLLegada)"
-    self.valorText.text = "Ofrece: $\(oferta.valorOferta)"
+    self.valorText.text = "Ofrece: $\(String(format: "%.2f",oferta.valorOferta))"
     self.calificacionText.text = "\(oferta.calificacion) (\(oferta.totalCalif))"
   }
 }

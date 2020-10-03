@@ -9,9 +9,10 @@
 import Foundation
 
 struct GlobalConstants {
-  static var urlHost: String = "https:testing-untaxi.xoaserver.com"//premium.xoait.com" //testing-untaxi.xoaserver.com
-  static var socketurlHost: String = "https://client-testing-untaxi.xoaserver.com" //premium.xoait.com"
-  static var paymentsUrl = "https://pay-premium.xoait.com"
+  static var urlServer: String = "premium.xoait.com"
+  static var urlHost: String = "https:\(urlServer)"//premium.xoait.com" //testing-untaxi.xoaserver.com
+  static var socketurlHost: String = "https://client-\(urlServer)" //premium.xoait.com"
+  static var paymentsUrl = "https://pay-\(urlServer)"
   
   static var apiLoginUrl:String = "\(urlHost)/auth/client-login"
   static var passRecoverUrl:String = "\(urlHost)/recover-password"

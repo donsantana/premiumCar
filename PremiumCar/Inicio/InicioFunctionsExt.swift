@@ -604,4 +604,22 @@ extension InicioController{
       ErrorConexion()
     }
   }
+  
+  func offSocketEventos(){
+    globalVariables.socket.off("cargarvehiculoscercanos")
+    globalVariables.socket.off("solicitarservicio")
+    globalVariables.socket.off("cancelarservicio")
+    globalVariables.socket.off("sinvehiculo")
+    globalVariables.socket.off("solicitudaceptada")
+    globalVariables.socket.off("serviciocancelado")
+    globalVariables.socket.off("ofertadelconductor")
+    globalVariables.socket.off("telefonosdelcallcenter")
+    globalVariables.socket.off("taximetroiniciado")
+    globalVariables.socket.off("subiroferta")
+    globalVariables.socket.off("U")
+    globalVariables.socket.off("voz")
+    globalVariables.socket.off("direccionespactadas")
+    globalVariables.socket.off("serviciocompletado")
+  }
+  
 }

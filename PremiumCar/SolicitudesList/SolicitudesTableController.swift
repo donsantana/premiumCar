@@ -54,6 +54,30 @@ class SolicitudesTableController: UITableViewController {
     self.tableView.tableHeaderView = view
   }
   
+  func mostrarMotivosCancelacion(solicitud: Solicitud){
+    let motivoAlerta = UIAlertController(title: "", message: "Seleccione el motivo de cancelación.", preferredStyle: UIAlertController.Style.actionSheet)
+    motivoAlerta.addAction(UIAlertAction(title: "No necesito", style: .default, handler: { action in
+      self.CancelarSolicitud("No necesito", solicitud: solicitud)
+    }))
+    motivoAlerta.addAction(UIAlertAction(title: "Demora el servicio", style: .default, handler: { action in
+      self.CancelarSolicitud("Demora el servicio", solicitud: solicitud)
+    }))
+    motivoAlerta.addAction(UIAlertAction(title: "Tarifa incorrecta", style: .default, handler: { action in
+      self.CancelarSolicitud("Tarifa incorrecta", solicitud: solicitud)
+    }))
+    motivoAlerta.addAction(UIAlertAction(title: "Vehículo en mal estado", style: .default, handler: { action in
+      self.CancelarSolicitud("Vehículo en mal estado", solicitud: solicitud)
+    }))
+    motivoAlerta.addAction(UIAlertAction(title: "Solo probaba el servicio", style: .default, handler: { action in
+      self.CancelarSolicitud("Solo probaba el servicio", solicitud: solicitud)
+    }))
+    motivoAlerta.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.destructive, handler: { action in
+      
+    }))
+    
+    self.present(motivoAlerta, animated: true, completion: nil)
+  }
+  
   func CancelarSolicitud(_ motivo: String, solicitud: Solicitud){
     //#Cancelarsolicitud, id, idTaxi, motivo, "# \n"
     let datos = solicitud.crearTramaCancelar(motivo: motivo)
@@ -99,33 +123,52 @@ class SolicitudesTableController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let vc = R.storyboard.main.solDetalles()
-    vc!.solicitudPendiente = self.solicitudesMostrar[indexPath.row]
-    self.navigationController?.show(vc!, sender: nil)
-  }
+//    let vc = R.storyboard.main.solDetalles()
+//    vc!.solicitudPendiente = self.solicitudesMostrar[indexPath.row]
+//    self.navigationController?.show(vc!, sender: nil)
+    
+    let solicitud = self.solicitudesMostrar[indexPath.row]
+    if solicitud.taxi.id != 0{
+      let vc = R.storyboard.main.solDetalles()
+      //vc.solicitudPendiente = self.solicitudesMostrar[indexPath.row]
+      vc?.solicitudPendiente = solicitud
+      self.navigationController?.show(vc!, sender: nil)
+    }else{
+      let alertaDos = UIAlertController (title: "Solicitud en proceso", message: "Solicitud enviada a todos los taxis cercanos. Esperando respuesta de un conductor.", preferredStyle: .alert)
+      alertaDos.addAction(UIAlertAction(title: "Esperar respuesta", style: .default, handler: {alerAction in
+        let vc = R.storyboard.main.inicioView()!
+        self.navigationController?.show(vc, sender: nil)
+      }))
+      alertaDos.addAction(UIAlertAction(title: "Cancelar la solicitud", style: .destructive, handler: {alerAction in
+        self.mostrarMotivosCancelacion(solicitud: solicitud)
+      }))
+      self.present(alertaDos, animated: true, completion: nil)
+    }
+  } 
 }
 
 extension SolicitudesTableController: SolPendientesDelegate{
   func cancelRequest(_ controller: SolPendientesViewCell, cancelarSolicitud solicitud: Solicitud) {
-    let motivoAlerta = UIAlertController(title: "", message: "Seleccione el motivo de cancelación.", preferredStyle: UIAlertController.Style.actionSheet)
-      motivoAlerta.addAction(UIAlertAction(title: "No necesito", style: .default, handler: { action in
-        self.CancelarSolicitud("No necesito", solicitud: solicitud)
-      }))
-      motivoAlerta.addAction(UIAlertAction(title: "Demora el servicio", style: .default, handler: { action in
-        self.CancelarSolicitud("Demora el servicio", solicitud: solicitud)
-      }))
-      motivoAlerta.addAction(UIAlertAction(title: "Tarifa incorrecta", style: .default, handler: { action in
-        self.CancelarSolicitud("Tarifa incorrecta", solicitud: solicitud)
-      }))
-      motivoAlerta.addAction(UIAlertAction(title: "Vehículo en mal estado", style: .default, handler: { action in
-        self.CancelarSolicitud("Vehículo en mal estado", solicitud: solicitud)
-      }))
-      motivoAlerta.addAction(UIAlertAction(title: "Solo probaba el servicio", style: .default, handler: { action in
-        self.CancelarSolicitud("Solo probaba el servicio", solicitud: solicitud)
-      }))
-      motivoAlerta.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.destructive, handler: { action in
-      }))
-      
-      self.present(motivoAlerta, animated: true, completion: nil)
+    self.mostrarMotivosCancelacion(solicitud: solicitud)
+//    let motivoAlerta = UIAlertController(title: "", message: "Seleccione el motivo de cancelación.", preferredStyle: UIAlertController.Style.actionSheet)
+//      motivoAlerta.addAction(UIAlertAction(title: "No necesito", style: .default, handler: { action in
+//        self.CancelarSolicitud("No necesito", solicitud: solicitud)
+//      }))
+//      motivoAlerta.addAction(UIAlertAction(title: "Demora el servicio", style: .default, handler: { action in
+//        self.CancelarSolicitud("Demora el servicio", solicitud: solicitud)
+//      }))
+//      motivoAlerta.addAction(UIAlertAction(title: "Tarifa incorrecta", style: .default, handler: { action in
+//        self.CancelarSolicitud("Tarifa incorrecta", solicitud: solicitud)
+//      }))
+//      motivoAlerta.addAction(UIAlertAction(title: "Vehículo en mal estado", style: .default, handler: { action in
+//        self.CancelarSolicitud("Vehículo en mal estado", solicitud: solicitud)
+//      }))
+//      motivoAlerta.addAction(UIAlertAction(title: "Solo probaba el servicio", style: .default, handler: { action in
+//        self.CancelarSolicitud("Solo probaba el servicio", solicitud: solicitud)
+//      }))
+//      motivoAlerta.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.destructive, handler: { action in
+//      }))
+//
+//      self.present(motivoAlerta, animated: true, completion: nil)
     }
 }

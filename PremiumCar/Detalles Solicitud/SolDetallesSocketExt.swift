@@ -12,6 +12,7 @@ import SocketIO
 
 extension SolPendController{
   func socketEventos(){
+    self.offSocketEventos()
     //MASK:- EVENTOS SOCKET
     globalVariables.socket.on("cargardatosdevehiculo"){data, ack in
   
@@ -48,8 +49,38 @@ extension SolPendController{
     }
     
     globalVariables.socket.on("voz"){data, ack in
+      
+      let temporal = data[0] as! [String: Any]
+      print(temporal)
+      
       self.MensajesBtn.isHidden = false
       self.MensajesBtn.setImage(UIImage(named: "mensajesnew"),for: UIControl.State())
+      
+      globalVariables.urlConductor = "\(GlobalConstants.urlHost)/\(temporal["audio"] as! String)"
+      if UIApplication.shared.applicationState == .background {
+        let localNotification = UILocalNotification()
+        localNotification.alertAction = "Mensaje del Conductor"
+        localNotification.alertBody = "Mensaje del Conductor. Abra la aplicación para escucharlo."
+        localNotification.fireDate = Date(timeIntervalSinceNow: 4)
+        UIApplication.shared.scheduleLocalNotification(localNotification)
+        //                if !myvariables.grabando{
+        //
+        //                    //myvariables.SMSVoz.ReproducirMusica()
+        //                    myvariables.SMSVoz.ReproducirVozConductor(myvariables.urlconductor)
+        //                }
+      }
+      //            else{
+      //                if  !myvariables.SMSProceso{
+      //                    myvariables.SMSProceso = true
+      //                    myvariables.SMSVoz.ReproducirMusica()
+      //                    myvariables.SMSVoz.ReproducirVozConductor(myvariables.urlconductor)
+      //                }else{
+      //                    let session = AVAudioSession.sharedInstance()
+      //                }
+      //
+      //            }
+
+      globalVariables.SMSVoz.ReproducirVozConductor(globalVariables.urlConductor)
     }
     
     //GEOPOSICION DE TAXIS
