@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ContactoViewCell" customModule="UnTaxi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xeR-di-bdk">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Para otra persona" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EnN-zQ-1CA">
+                            <rect key="frame" x="117" y="7.5" width="292" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="WgV-xt-s43"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="nyN-Vn-y12"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6bm-Dh-Zmz">
+                            <rect key="frame" x="55" y="2" width="49" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="47" id="1UE-Qr-FkJ"/>
+                                <constraint firstAttribute="height" constant="31" id="Kn3-tc-b2q"/>
+                            </constraints>
+                            <color key="onTintColor" red="0.99882358309999997" green="0.79328209159999996" blue="0.28607994320000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="showContactView:" destination="iN0-l3-epB" eventType="valueChanged" id="MFr-SA-2kN"/>
+                            </connections>
+                        </switch>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YsY-b8-6OJ">
+                            <rect key="frame" x="60" y="34" width="354" height="31"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contactname" translatesAutoresizingMaskIntoConstraints="NO" id="W5c-aN-fVb">
+                                    <rect key="frame" x="0.0" y="5.5" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="N5F-9Z-fon"/>
+                                        <constraint firstAttribute="width" secondItem="W5c-aN-fVb" secondAttribute="height" multiplier="1:1" id="pom-9D-7bw"/>
+                                    </constraints>
+                                </imageView>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nombre a contactar" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2sZ-VE-zS5">
+                                    <rect key="frame" x="20" y="5" width="178" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="xHY-AD-tmI"/>
+                                    </constraints>
+                                    <color key="textColor" red="0.0" green="0.18042099480000001" blue="0.50973761080000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" returnKeyType="next"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Teléfono" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Ynp-wu-Hdg" customClass="PhoneNumberTextField" customModule="PhoneNumberKit">
+                                    <rect key="frame" x="218" y="6.5" width="116" height="18"/>
+                                    <color key="textColor" red="0.0" green="0.18042099480000001" blue="0.50973761080000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="phonePad" enablesReturnKeyAutomatically="YES"/>
+                                </textField>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contactphone" translatesAutoresizingMaskIntoConstraints="NO" id="46j-9N-f2G">
+                                    <rect key="frame" x="198" y="5.5" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="46j-9N-f2G" secondAttribute="height" multiplier="1:1" id="ZQn-UU-BsI"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Ynp-wu-Hdg" secondAttribute="trailing" constant="20" id="2UN-jA-zsk"/>
+                                <constraint firstItem="46j-9N-f2G" firstAttribute="leading" secondItem="2sZ-VE-zS5" secondAttribute="trailing" id="5we-b6-ZNc"/>
+                                <constraint firstItem="Ynp-wu-Hdg" firstAttribute="centerY" secondItem="YsY-b8-6OJ" secondAttribute="centerY" id="6kJ-kw-qiI"/>
+                                <constraint firstItem="Ynp-wu-Hdg" firstAttribute="leading" secondItem="46j-9N-f2G" secondAttribute="trailing" id="9cS-I4-zlE"/>
+                                <constraint firstItem="W5c-aN-fVb" firstAttribute="centerY" secondItem="YsY-b8-6OJ" secondAttribute="centerY" id="FhO-kj-HCr"/>
+                                <constraint firstItem="W5c-aN-fVb" firstAttribute="leading" secondItem="YsY-b8-6OJ" secondAttribute="leading" id="HbZ-oa-LWf"/>
+                                <constraint firstItem="46j-9N-f2G" firstAttribute="top" secondItem="W5c-aN-fVb" secondAttribute="top" id="Jqd-h7-NaR"/>
+                                <constraint firstItem="2sZ-VE-zS5" firstAttribute="trailing" secondItem="46j-9N-f2G" secondAttribute="leading" id="Pwz-LT-mKt"/>
+                                <constraint firstItem="Ynp-wu-Hdg" firstAttribute="height" secondItem="2sZ-VE-zS5" secondAttribute="height" multiplier="0.857143" id="UgV-Bh-Bun"/>
+                                <constraint firstItem="2sZ-VE-zS5" firstAttribute="trailing" secondItem="YsY-b8-6OJ" secondAttribute="centerX" constant="21" id="Uoo-lg-LpH"/>
+                                <constraint firstItem="46j-9N-f2G" firstAttribute="bottom" secondItem="W5c-aN-fVb" secondAttribute="bottom" id="WEr-xW-Zmz"/>
+                                <constraint firstItem="2sZ-VE-zS5" firstAttribute="centerY" secondItem="YsY-b8-6OJ" secondAttribute="centerY" id="Ymg-q0-2Zc"/>
+                                <constraint firstItem="2sZ-VE-zS5" firstAttribute="leading" secondItem="W5c-aN-fVb" secondAttribute="trailing" id="zz8-9a-eH1"/>
+                            </constraints>
+                        </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contactoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="9Kg-wd-PSW">
+                            <rect key="frame" x="20" y="2" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="dNN-7v-0WC"/>
+                                <constraint firstAttribute="height" constant="30" id="ujk-nz-FWJ"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="6bm-Dh-Zmz" firstAttribute="leading" secondItem="9Kg-wd-PSW" secondAttribute="trailing" constant="5" id="0K1-4N-HMp"/>
+                        <constraint firstItem="YsY-b8-6OJ" firstAttribute="leading" secondItem="6bm-Dh-Zmz" secondAttribute="leading" constant="5" id="0kH-Qo-LUb"/>
+                        <constraint firstAttribute="trailing" secondItem="YsY-b8-6OJ" secondAttribute="trailing" id="I9U-CV-fC4"/>
+                        <constraint firstItem="EnN-zQ-1CA" firstAttribute="centerY" secondItem="6bm-Dh-Zmz" secondAttribute="centerY" id="InQ-NU-brf"/>
+                        <constraint firstItem="9Kg-wd-PSW" firstAttribute="top" secondItem="6bm-Dh-Zmz" secondAttribute="top" id="XA2-8r-PND"/>
+                        <constraint firstItem="9Kg-wd-PSW" firstAttribute="leading" secondItem="xeR-di-bdk" secondAttribute="leading" constant="20" id="XLE-IG-dON"/>
+                        <constraint firstAttribute="bottom" secondItem="YsY-b8-6OJ" secondAttribute="bottom" id="ZvT-Ur-Wt1"/>
+                        <constraint firstItem="YsY-b8-6OJ" firstAttribute="top" secondItem="6bm-Dh-Zmz" secondAttribute="bottom" constant="1" id="iTf-WY-s5l"/>
+                        <constraint firstAttribute="trailing" secondItem="EnN-zQ-1CA" secondAttribute="trailing" constant="5" id="ruj-VR-bJr"/>
+                        <constraint firstItem="6bm-Dh-Zmz" firstAttribute="top" secondItem="xeR-di-bdk" secondAttribute="top" constant="2" id="sdv-Ja-8mh"/>
+                        <constraint firstItem="EnN-zQ-1CA" firstAttribute="leading" secondItem="6bm-Dh-Zmz" secondAttribute="trailing" constant="15" id="udj-zr-DU1"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="xeR-di-bdk" secondAttribute="bottom" id="3Xv-Cs-aOG"/>
+                <constraint firstItem="xeR-di-bdk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="m4y-ua-IAR"/>
+                <constraint firstItem="xeR-di-bdk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mB6-6E-xQz"/>
+                <constraint firstAttribute="trailing" secondItem="xeR-di-bdk" secondAttribute="trailing" id="oBj-4f-YyD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="contactDataVIew" destination="YsY-b8-6OJ" id="f1J-tI-rJF"/>
+                <outlet property="contactarSwitch" destination="6bm-Dh-Zmz" id="cyh-zg-wE0"/>
+                <outlet property="contactoNameText" destination="2sZ-VE-zS5" id="Tgb-XB-J5V"/>
+                <outlet property="telefonoText" destination="Ynp-wu-Hdg" id="VbG-wf-N0V"/>
+            </connections>
+            <point key="canvasLocation" x="150.72463768115944" y="-127.23214285714285"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="contactname" width="20" height="20"/>
+        <image name="contactoIcon" width="30" height="30"/>
+        <image name="contactphone" width="20" height="20"/>
+    </resources>
+</document>
